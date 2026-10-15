@@ -1,0 +1,15 @@
+# Copy to /etc/systemd/system/sled-bot.service, adjust paths/user, then:
+#   sudo systemctl daemon-reload && sudo systemctl enable --now sled-bot
+[Unit]
+Description=Sled Telegram bot
+After=network-online.target
+
+[Service]
+User=sled
+WorkingDirectory=/opt/sled-bot
+ExecStart=/opt/sled-bot/.venv/bin/python bot.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
